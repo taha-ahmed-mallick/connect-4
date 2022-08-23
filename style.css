@@ -1,0 +1,46 @@
+:root {
+      --background: linear-gradient(to right, #2F80ED, #56CCF2);
+      --webkit-background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);
+      --background-norm: #56CCF2;
+}
+
+html {
+      overflow: hidden;
+      overflow: -moz-hidden-unscrollable;
+}
+
+body {
+      background: var(--background-norm);
+      background: var(--webkit-background);
+      background: var(--background);
+
+      /* background: #DCE35B;
+      background: -webkit-linear-gradient(to right, #45B649, #DCE35B);
+      background: linear-gradient(to right, #45B649, #DCE35B); */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+div.board {
+      height: 85%;
+      width: 90%;
+      background: #0061aa;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+}
+
+div.hole {
+      height: 100px;
+      background: var(--background-norm);
+      background: var(--webkit-background);
+      background: var(--background);
+      border-radius: 50px;
+      width: 100px;
+      background-attachment: fixed;
+      margin: 14px 0px 0px 21px;
+      box-shadow: inset 0px 0px 20px 3px black;
+}
