@@ -73,7 +73,7 @@ class Hole {
       }
 
       drawHoles() {
-            let grdR = ctx.createRadialGradient(this.x, this.y, 30, this.x, this.y, this.r + 5);
+            let grdR = ctx.createRadialGradient(this.x, this.y, 25, this.x, this.y, this.r + 5);
             grdR.addColorStop(0, "#00000000");
             grdR.addColorStop(1, "#000000");
 
