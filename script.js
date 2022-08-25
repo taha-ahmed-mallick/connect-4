@@ -37,10 +37,19 @@ class Board {
       setup() {
             this.drawBoard();
 
+            let r = 45;
+
+            if (canvas_percent.width * 94 < canvas_percent.height * 74) {
+                  r = canvas_percent.width * 94 / 6 - 45;
+            } else {
+                  r = canvas_percent.height * 74 / 7 - 45;
+            }
+
+            console.log(r);
             for (let i = 0; i < 6; i++) {
                   let row = [];
                   for (let j = 0; j < 7; j++) {
-                        row.push(new Hole(canvas_percent.width * 94 / 7 * j + canvas_percent.width * 9.5, canvas_percent.height * 74 / 6 * i + canvas_percent.height * 29, 45));
+                        row.push(new Hole(canvas_percent.width * 94 / 7 * j + canvas_percent.width * 9.5, canvas_percent.height * 74 / 6 * i + canvas_percent.height * 29, r));
                         row[j].drawHoles();
                   }
                   this.holes.push(row);
