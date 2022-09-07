@@ -1,6 +1,6 @@
 const canvas = document.getElementsByTagName('canvas')[0];
 const ctx = canvas.getContext('2d');
-let canvas_percent;
+let canvas_percent, boardH = 0, boardW = 0;
 
 const inputs = document.getElementsByTagName('input');
 
@@ -24,24 +24,31 @@ for (let i = 0; i < inputs.length; i++) {
 
 let board = new Image();
 board.src = "./board.jpg";
+let boardBack = new Image();
+boardBack.src = "./board-back.png"
 let disc = new Image();
 disc.src = "./disc.jpg";
 
 window.addEventListener('resize', update);
-board.addEventListener('load', drawImage)
+board.addEventListener('load', drawImage);
+boardBack.addEventListener('load', drawImage);
 update();
 
 function drawImage() {
-      if (canvas.width > canvas.height) {
-            let aspect = board.naturalWidth / board.naturalHeight;
-            let h = canvas.height;
-            let w = h / aspect;
-            ctx.drawImage(board, 0, 0, h, w);
+      if (canvas.width > canvas.height && boardW < canvas.width) {
+            let aspectBoard = board.naturalWidth / board.naturalHeight;
+            boardH = 650;
+            boardW = boardH * aspectBoard;
+            ctx.drawImage(boardBack, 32 * boardH / 650, 4 * boardW / 780, boardW * (boardBack.naturalWidth / board.naturalWidth), boardH * (boardBack.naturalHeight / board.naturalHeight));
+            ctx.drawImage(board, 0, 0, boardW, boardH);
+            console.log("if");
       } else {
-            let aspect = board.naturalWidth / board.naturalHeight;
-            let w = canvas.width;
-            let h = w / aspect;
-            ctx.drawImage(board, 0, 0, w, h);
+            let aspectBoard = board.naturalWidth / board.naturalHeight;
+            boardW = canvas.width;
+            boardH = boardW / aspectBoard;
+            ctx.drawImage(boardBack, 32 * boardH / 650, 4 * boardW / 780, boardW * (boardBack.naturalWidth / board.naturalWidth), boardH * (boardBack.naturalHeight / board.naturalHeight));
+            ctx.drawImage(board, 0, 0, boardW, boardH);
+            console.log("else");
       }
 }
 
@@ -61,7 +68,6 @@ class Board {
       }
 
       setup() {
-            console.log(canvas_percent.width * 50);
       }
 }
 
