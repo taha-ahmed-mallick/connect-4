@@ -1,6 +1,6 @@
 const canvas = document.getElementsByTagName('canvas')[0];
 const ctx = canvas.getContext('2d');
-let canvas_percent, boardH = 0, boardW = 0;
+let canvas_percent, boardH = 0, boardW = 0, d = 78;
 
 const inputs = document.getElementsByTagName('input');
 
@@ -32,22 +32,27 @@ disc.src = "./disc.jpg";
 window.addEventListener('resize', update);
 board.addEventListener('load', drawImage);
 boardBack.addEventListener('load', drawImage);
+disc.addEventListener('load', drawImage);
 update();
 
 function drawImage() {
       if (canvas.width > canvas.height && boardW < canvas.width) {
             let aspectBoard = board.naturalWidth / board.naturalHeight;
-            boardH = 650;
+            boardH = canvas.height - 90;
             boardW = boardH * aspectBoard;
-            ctx.drawImage(boardBack, 32 * boardH / 650, 4 * boardW / 780, boardW * (boardBack.naturalWidth / board.naturalWidth), boardH * (boardBack.naturalHeight / board.naturalHeight));
-            ctx.drawImage(board, 0, 0, boardW, boardH);
+            d = boardH / board.naturalHeight * 78;
+            ctx.drawImage(boardBack, canvas.width / 2 - boardW / 2 + 32 * boardH / 650, 4 * boardW / 780 + 90, boardW * (boardBack.naturalWidth / board.naturalWidth), boardH * (boardBack.naturalHeight / board.naturalHeight));
+            ctx.drawImage(disc, 78, 0, 78, 78, 0, 0, d, d);
+            ctx.drawImage(board, canvas.width / 2 - boardW / 2, 90, boardW, boardH);
             console.log("if");
       } else {
             let aspectBoard = board.naturalWidth / board.naturalHeight;
             boardW = canvas.width;
             boardH = boardW / aspectBoard;
-            ctx.drawImage(boardBack, 32 * boardH / 650, 4 * boardW / 780, boardW * (boardBack.naturalWidth / board.naturalWidth), boardH * (boardBack.naturalHeight / board.naturalHeight));
-            ctx.drawImage(board, 0, 0, boardW, boardH);
+            d = boardH * 78 / board.naturalHeight;
+            ctx.drawImage(boardBack, canvas.width / 2 - boardW / 2 + 32 * boardH / 650, 4 * boardW / 780 + 90, boardW * (boardBack.naturalWidth / board.naturalWidth), boardH * (boardBack.naturalHeight / board.naturalHeight));
+            ctx.drawImage(disc, 0, 0, 78, 78, 0, 0, d, d);
+            ctx.drawImage(board, canvas.width / 2 - boardW / 2, 90, boardW, boardH);
             console.log("else");
       }
 }
